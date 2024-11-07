@@ -16,4 +16,7 @@ export class Livro {
 
   @Column()
   anoPublicacao: number;
+
+  @Column()
+  imageURL: string;
 }
