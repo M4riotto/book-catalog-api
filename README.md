@@ -1,99 +1,119 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### **Pré-requisitos**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+1. Node.js v18.2 ou superior
+2. MySQL
+3. Nest CLI
 
-## Description
+### **Instalação**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. Clone o repositório do backend:
+   ```bash
+   git clone <URL_DO_REPOSITORIO_BACKEND>
+   cd book-catalog-api
+   ```
 
-## Project setup
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-```bash
-$ npm install
-```
+### **Configuração**
 
-## Compile and run the project
+1. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js. Exemplo de configuração para conexão com o MySQL:
+   ```typescript
+   TypeOrmModule.forRoot({
+     type: 'mysql',
+     host: 'localhost',
+     port: 3306,
+     username: 'root',
+     password: 'password',
+     database: 'book_catalog',
+     entities: [Livro],
+     synchronize: true,
+   }),
+   ```
 
-```bash
-# development
-$ npm run start
+2. **Variáveis de Ambiente**: Crie um arquivo `.env` com as variáveis necessárias, incluindo a chave secreta para o JWT.
 
-# watch mode
-$ npm run start:dev
+### **Scripts**
 
-# production mode
-$ npm run start:prod
-```
+- **Desenvolvimento**: Para iniciar o servidor de desenvolvimento:
+   ```bash
+   npm run start:dev
+   ```
 
-## Run tests
+- **Compilar**: Para compilar o projeto:
+   ```bash
+   npm run build
+   ```
 
-```bash
-# unit tests
-$ npm run test
+### **Endpoints da API**
 
-# e2e tests
-$ npm run test:e2e
+#### **/livros**
 
-# test coverage
-$ npm run test:cov
-```
+- **GET**: Retorna todos os livros do catálogo.
+  - Exemplo de resposta:
+    ```json
+    [
+      { "id": 1, "titulo": "Livro 1", "autor": "Autor 1", "descricao": "Descrição do livro", "anoPublicacao": 2020, "imageURL": "url_imagem" },
+      { "id": 2, "titulo": "Livro 2", "autor": "Autor 2", "descricao": "Descrição do livro", "anoPublicacao": 2021, "imageURL": "url_imagem" }
+    ]
+    ```
 
-## Deployment
+#### **/livros/:id**
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- **GET**: Retorna as informações detalhadas de um livro específico.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- **POST**: Adiciona um novo livro. Requer autenticação com JWT.
+  - Exemplo de corpo da requisição:
+    ```json
+    {
+      "titulo": "Novo Livro",
+      "autor": "Novo Autor",
+      "descricao": "Descrição do livro",
+      "anoPublicacao": 2023,
+      "imageURL": "url_imagem"
+    }
+    ```
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+- **PUT**: Atualiza um livro existente. Requer autenticação com JWT.
+  - Exemplo de corpo da requisição:
+    ```json
+    {
+      "titulo": "Livro Atualizado",
+      "autor": "Autor Atualizado",
+      "descricao": "Nova descrição",
+      "anoPublicacao": 2023,
+      "imageURL": "nova_url_imagem"
+    }
+    ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- **DELETE**: Exclui um livro existente. Requer autenticação com JWT.
 
-## Resources
+#### **Autenticação JWT**
 
-Check out a few resources that may come in handy when working with NestJS:
+- **POST /auth/login**: Endpoint para autenticar e obter um token JWT.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+  - Exemplo de corpo da requisição:
+    ```json
+    {
+      "username": "usuário",
+      "password": "senha"
+    }
+    ```
 
-## Support
+  - Exemplo de resposta:
+    ```json
+    {
+      "access_token": "jwt_token_aqui"
+    }
+    ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### **Segurança e Autenticação**
 
-## Stay in touch
+- **JWT**: Todos os endpoints relacionados a livros são protegidos com JWT. O token deve ser enviado no cabeçalho de autorização:
+  ```bash
+  Authorization: Bearer <token>
+  ```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
