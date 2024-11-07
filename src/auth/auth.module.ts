@@ -11,7 +11,7 @@ import { JwtStrategy } from './jwt.strategy'; // (Se você tiver uma estratégia
     UsuarioModule, // Importando o módulo de usuários
     JwtModule.register({
       secret: 'secretKey', // Defina uma chave secreta para o JWT
-      signOptions: { expiresIn: '60m' }, // Defina o tempo de expiração do token
+      signOptions: { expiresIn: '60m' }, // Token expira após 10 segundos
     }),
   ],
   controllers: [AuthController],

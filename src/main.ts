@@ -8,7 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'http://localhost:4200', // Permite o frontend Angular
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type, Accept', // Cabeçalhos permitidos
+    allowedHeaders: 'Content-Type, Accept, Authorization', // Cabeçalhos permitidos, incluindo Authorization
   });
 
   await app.listen(process.env.PORT ?? 3001);
