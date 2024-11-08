@@ -20,7 +20,7 @@
 
 ### **Configuração**
 
-1. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js. Exemplo de configuração para conexão com o MySQL:
+1. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js. Importe o arquivo `catalogo_livro.sql` para o seu SQL:
    ```typescript
    TypeOrmModule.forRoot({
      type: 'mysql',
@@ -53,7 +53,8 @@
 #### **/livros**
 
 - **GET**: Retorna todos os livros do catálogo.
-  - Exemplo de resposta:
+  - **Autenticação**: Requer token JWT.
+  - **Exemplo de resposta**:
     ```json
     [
       { "id": 1, "titulo": "Livro 1", "autor": "Autor 1", "descricao": "Descrição do livro", "anoPublicacao": 2020, "imageURL": "url_imagem" },
@@ -63,10 +64,13 @@
 
 #### **/livros/:id**
 
-- **GET**: Retorna as informações detalhadas de um livro específico.
+- **GET**: Retorna as informações detalhadas de um livro específico com base no ID.
+  - **Autenticação**: Requer token JWT.
+  - **Parâmetros**: `id` - ID do livro.
 
-- **POST**: Adiciona um novo livro. Requer autenticação com JWT.
-  - Exemplo de corpo da requisição:
+- **POST**: Adiciona um novo livro ao catálogo.
+  - **Autenticação**: Requer token JWT.
+  - **Exemplo de corpo da requisição**:
     ```json
     {
       "titulo": "Novo Livro",
@@ -77,8 +81,10 @@
     }
     ```
 
-- **PUT**: Atualiza um livro existente. Requer autenticação com JWT.
-  - Exemplo de corpo da requisição:
+- **PUT**: Atualiza um livro existente com base no ID.
+  - **Autenticação**: Requer token JWT.
+  - **Parâmetros**: `id` - ID do livro.
+  - **Exemplo de corpo da requisição**:
     ```json
     {
       "titulo": "Livro Atualizado",
@@ -89,21 +95,21 @@
     }
     ```
 
-- **DELETE**: Exclui um livro existente. Requer autenticação com JWT.
+- **DELETE**: Exclui um livro existente com base no ID.
+  - **Autenticação**: Requer token JWT.
+  - **Parâmetros**: `id` - ID do livro.
 
 #### **Autenticação JWT**
 
 - **POST /auth/login**: Endpoint para autenticar e obter um token JWT.
-
-  - Exemplo de corpo da requisição:
+  - **Exemplo de corpo da requisição**:
     ```json
     {
       "username": "usuário",
       "password": "senha"
     }
     ```
-
-  - Exemplo de resposta:
+  - **Exemplo de resposta**:
     ```json
     {
       "access_token": "jwt_token_aqui"
@@ -116,4 +122,3 @@
   ```bash
   Authorization: Bearer <token>
   ```
-
