@@ -9,7 +9,7 @@
 
 1. Clone o repositório do backend:
    ```bash
-   git clone <URL_DO_REPOSITORIO_BACKEND>
+   git clone https://github.com/M4riotto/book-catalog-api.git
    cd book-catalog-api
    ```
 
@@ -20,7 +20,10 @@
 
 ### **Configuração**
 
-1. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js. Importe o arquivo `catalogo_livro.sql` para o seu SQL:
+
+1.  Importe o arquivo `catalogo_livro.sql` para o seu SQL(XAMPP)
+
+2. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js.
    ```typescript
    TypeOrmModule.forRoot({
      type: 'mysql',
@@ -34,7 +37,7 @@
    }),
    ```
 
-2. **Variáveis de Ambiente**: Crie um arquivo `.env` com as variáveis necessárias, incluindo a chave secreta para o JWT.
+3. **Variáveis de Ambiente**: Crie um arquivo `.env` com as variáveis necessárias, incluindo a chave secreta para o JWT.
 
 ### **Scripts**
 
