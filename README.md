@@ -9,7 +9,7 @@
 
 1. Clone o repositório do backend:
    ```bash
-   git clone <URL_DO_REPOSITORIO_BACKEND>
+   git clone https://github.com/M4riotto/book-catalog-api.git
    cd book-catalog-api
    ```
 
