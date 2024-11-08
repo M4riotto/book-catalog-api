@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/11/2024 às 21:54
+-- Tempo de geração: 08/11/2024 às 15:12
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `catalogo_livros`
+-- Banco de dados: `teste`
 --
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id`, `titulo`, `anoPublicacao`, `autor`, `descricao`, `imageURL`) VALUES
-(14, 'Harry Potter e a Pedra Filosofal', 1997, 'J.K. Rowling', 'Harry descobre que é um bruxo e entra na Escola de Magia, onde enfrenta desafios.', 'https://jamboeditora.com.br/wp-content/uploads/2020/09/jamboeditora-pedrafilosofal.png'),
+(14, 'Harry Potter e a Pedra Filosofal', 1997, 'J.K. Rowling', 'Harry descobre que é um bruxo e entra na Escola de Magia, onde enfrenta desafios.', 'https://m.media-amazon.com/images/I/81ibfYk4qmL._AC_UF1000,1000_QL80_.jpg'),
 (15, 'Harry Potter e a Câmara Secreta', 1998, 'J.K. Rowling', 'Harry retorna a Hogwarts e investiga mistérios ligados à Câmara Secreta.', 'https://m.media-amazon.com/images/I/81jbivNEVML._AC_UF1000,1000_QL80_.jpg'),
 (16, 'Harry Potter e o Prisioneiro de Azkaban', 1999, 'J.K. Rowling', 'Harry descobre mais sobre seu passado e enfrenta novos perigos no terceiro ano.', 'https://m.media-amazon.com/images/I/81u+ljPVifL._AC_UF1000,1000_QL80_.jpg'),
 (17, 'Harry Potter e o Cálice de Fogo', 2000, 'J.K. Rowling', 'Harry participa de um torneio mágico, onde uma ameaça maior começa a surgir.', 'https://m.media-amazon.com/images/I/81nTLN-kz7L._AC_UF1000,1000_QL80_.jpg\n'),
@@ -66,8 +66,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `senha`, `email`) VALUES
-(1, 'senha_hashed_1', 'alice@example.com'),
-(2, '123456', 'vitormariotto03@gmail.com');
+(1, 'admin123', 'admin@gmail.com');
 
 --
 -- Índices para tabelas despejadas
