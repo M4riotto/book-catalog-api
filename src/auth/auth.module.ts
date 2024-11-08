@@ -1,20 +1,19 @@
-// src/auth/auth.module.ts
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt'; // Importando o JwtModule
+import { JwtModule } from '@nestjs/jwt'; 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UsuarioModule } from '../usuario/usuario.module'; // Seu módulo de usuários
-import { JwtStrategy } from './jwt.strategy'; // (Se você tiver uma estratégia de JWT)
+import { UsuarioModule } from '../usuario/usuario.module'; 
+import { JwtStrategy } from './jwt.strategy'; 
 
 @Module({
   imports: [
-    UsuarioModule, // Importando o módulo de usuários
+    UsuarioModule, 
     JwtModule.register({
-      secret: 'secretKey', // Defina uma chave secreta para o JWT
-      signOptions: { expiresIn: '60m' }, // Token expira após 10 segundos
+      secret: 'secretKey', 
+      signOptions: { expiresIn: '60m' }, 
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy], // Adicione a estratégia JWT, se estiver usando
+  providers: [AuthService, JwtStrategy], 
 })
 export class AuthModule {}

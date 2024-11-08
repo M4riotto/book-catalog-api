@@ -1,9 +1,8 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsuarioModule } from './usuario/usuario.module';
-import { LivroModule } from './livro/livro.module'; // Importando o LivroModule
+import { LivroModule } from './livro/livro.module'; 
 
 @Module({
   imports: [
@@ -19,7 +18,7 @@ import { LivroModule } from './livro/livro.module'; // Importando o LivroModule
     }),
     AuthModule,
     UsuarioModule,
-    LivroModule,  // Adicionando o LivroModule aqui
+    LivroModule,  
   ],
 })
 export class AppModule {}
