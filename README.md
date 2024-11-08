@@ -21,6 +21,7 @@
 ### **Configuração**
 
 1. **Banco de Dados**: Configure o banco de dados MySQL no `app.module.ts` do Nest.js. Exemplo de configuração para conexão com o MySQL:
+   Pegue o arquivo catalogo_livro.sql e importa para o seu SQL
    ```typescript
    TypeOrmModule.forRoot({
      type: 'mysql',
